@@ -44,11 +44,12 @@ function Login() {
                 <button className="w-full bg-blue-600 text-white p-2 rounded">
                     Login
                 </button>
-                <a href="http://localhost:5000/auth/google"
-                className="block text-center text-sm text-blue-600 pt-2"
->
-                Login with Google
-            </a>
+                <a
+                    href={`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/auth/google`}
+                    className="block text-center text-sm text-blue-600 pt-2"
+                >
+                    Login with Google
+                </a>
                 {message && <p className="text-sm text-gray-600">{message}</p>}
             </form>
         </div>

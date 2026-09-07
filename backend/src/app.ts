@@ -18,7 +18,13 @@ import "./jobs/complaintWorker";
 import webpush from "./utils/push";
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: [
+        "http://localhost:5173",
+        process.env.FRONTEND_URL || "",
+    ],
+    credentials: true,
+}));
 app.use(
     session({
         secret: process.env.JWT_SECRET || "dev_secret_change_this",
@@ -357,7 +363,7 @@ app.get(
     (req, res) => {
         const user = req.user as { id: string };
         const token = signToken(user.id);
-        res.redirect(`http://localhost:5173/oauth-success?token=${token}`);
+        res.redirect(`${process.env.FRONTEND_URL}/oauth-success?token=${token}`);
     }
 );
 
