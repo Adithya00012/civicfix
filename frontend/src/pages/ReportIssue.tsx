@@ -47,7 +47,7 @@ function ReportIssue() {
 
             const finalCategory = category === "other" && customCategory.trim() ? customCategory.trim() : category;
 
-            const res = await api.post("/complaints", {
+            await api.post("/complaints", {
                 title,
                 description,
                 category: finalCategory,

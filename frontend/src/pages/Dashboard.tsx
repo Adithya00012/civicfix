@@ -77,7 +77,7 @@ function Dashboard() {
                     />
                     <MarkerClusterGroup
                         singleMarkerMode={true}
-                        iconCreateFunction={(cluster) => {
+                        iconCreateFunction={(cluster : any) => {
                             const count = cluster.getChildCount();
                             return L.divIcon({
                                 html: `<div style="background:#2563eb;color:white;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-weight:bold;">${count}</div>`,
