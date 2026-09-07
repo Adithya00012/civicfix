@@ -1,5 +1,6 @@
 import { Worker } from "bullmq";
 import prisma from "../prisma";
+import connection from "../utils/redis";
 
 const worker = new Worker(
     "sla-check",
@@ -24,7 +25,7 @@ const worker = new Worker(
 
         console.log(`SLA check complete. ${breached.length} complaints escalated.`);
     },
-    { connection: { host: "localhost", port: 6379 } }
+    { connection }
 );
 
 worker.on("failed", (job, err) => {

@@ -6,6 +6,7 @@ import { getEmbedding, cosineSimilarity } from "../utils/similarity";
 import { assignDepartment } from "../utils/department";
 import { calculateSlaDeadline } from "../utils/sla";
 import { getImageHash, compareHashes } from "../utils/imageHash";   
+import connection from "../utils/redis";
 
 const worker = new Worker(
     "complaint-processing",
@@ -92,7 +93,7 @@ const worker = new Worker(
 
         console.log(`Processed complaint: ${complaintId}`);
     },
-    { connection: { host: "localhost", port: 6379 } }
+    { connection }
 );
 
 worker.on("failed", (job, err) => {

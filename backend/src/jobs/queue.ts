@@ -1,5 +1,4 @@
 import { Queue } from "bullmq";
+import connection from "../utils/redis";
 
-export const slaQueue = new Queue("sla-check", {
-    connection: { host: "localhost", port: 6379 },
-});
+export const slaQueue = new Queue("sla-check", { connection });
